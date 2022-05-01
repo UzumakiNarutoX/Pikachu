@@ -79,55 +79,20 @@ GROUP_START_IMG = "https://telegra.ph/file/2cd6f97e0cf04d63cabf4.mp4"
 FLARE_PHOTO = "https://telegra.ph/file/2a171330f0ad1fc02465c.jpg"
 
 PM_START_TEXT = """
-────「 {} 」────
-*Hey! {},*
-* I am an Anime themed advance group management bot with a lots of Features.*
-➖➖➖➖➖➖➖➖➖➖➖
-• *Uptime:* `{}`
-➖➖➖➖➖➖➖➖➖➖➖
-➛ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/852e96d6c59f2ccad32df.jpg) ××
+** Hello {}, ᴍʏ ɴᴀᴍᴇ ɪs *{}*!\n 
+ɪᴍ ᴀ ʜɪɢʜʏ ᴀᴅᴠᴀɴᴄᴇᴅ ʙᴏᴛ ᴡɪᴛʜ ʟᴏᴛꜱ ᴏꜰ ᴀᴍᴀᴢɪɴɢ ᴛᴏᴏʟꜱ.
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+➛ Try The /help Buttons Below To Know My Abilities ××.
 """
 
 HELP_STRINGS = """
-Hey there, I'm Flare Robot !
-To make me functional, make sure that i have enough rights in your group.
-Helpful commands:
-- /start: Starts me! You've probably already used this.
-- /help: Sends this message; I'll tell you more about myself!
-- /donate: Gives you info on how to support me and my creator.
-
-All commands can be used with the following: / !
-List of all the Modules:
-""".format(
-    dispatcher.bot.first_name,
-    "" if not ALLOW_EXCL else "📝All commands can either be used with / or !.",
-)
-
-buttons = [
-    [
-                        InlineKeyboardButton(
-                            text=f"Add Flare To Your Group",
-                            url=f"https://telegram.dog/@{BOT_USERNAME}?startgroup=true")
-                    ],
-                   [
-                       InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
-                       InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/OtaKu_Gang1"),
-                       InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
-                     ],
-                    [                  
-                       InlineKeyboardButton(
-                             text="🚑 Support",
-                             url=f"https://telegram.dog/Freia_Support"),
-                       InlineKeyboardButton(
-                             text="📢 Updates",
-                             url="https://t.me/Freia_Updates")
-                     ], 
-    ]
-
-
-
-DONATE_STRING = """Durov Is my Cousin By The Way.."""
-
+ʜᴇʟʟᴏ! ᴍʏ ɴᴀᴍᴇ *{}*.
+*ᴍᴀɪɴ ᴄᴏᴍᴍᴀɴᴅs ᴀᴠᴀɪʟᴀʙʟᴇ*:
+ ➥ /start: sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ
+ ➥ /help <ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ>: ᴘᴍ's ʏᴏᴜ ɪɴғᴏ ᴀʙᴏᴜᴛ ᴛʜᴀᴛ ᴍᴏᴅᴜʟᴇ.
+{}
+""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ᴇɪᴛʜᴇʀ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ / ᴏʀ !.\n")
+TECHNO_IMG = "https://telegra.ph/file/993fd697990df500bf41b.jpg"
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
@@ -135,15 +100,18 @@ STATS = []
 USER_INFO = []
 DATA_IMPORT = []
 DATA_EXPORT = []
+
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
+
+
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("Flare_Robot.modules." + module_name)
+    imported_module = importlib.import_module("tg_bot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
-    if imported_module.__mod_name__.lower() not in IMPORTED:
+    if not imported_module.__mod_name__.lower() in IMPORTED:
         IMPORTED[imported_module.__mod_name__.lower()] = imported_module
     else:
         raise Exception("Can't have two modules with the same name! Please change one")
